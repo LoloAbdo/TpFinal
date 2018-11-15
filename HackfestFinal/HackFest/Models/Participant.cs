@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HackFest.Models
 {
-    public class Participant
+    public sealed class Participant
     {
         public int ID_Participant { get; set; }
 
