@@ -10,10 +10,30 @@
 </head>
 
 <body style="text-align:center">
-    <h1 style="height:25%">Bienvenue au Hackfest</h1>
+    <h1 style="height:25%">Système d'information de gestion pour le Hackfest</h1>
 
-    <h4 style="height:100px">Pour vous participer, veuillez cliquez sur le bouton ci-dessous</h4>
+    <h4 style="height:100px">Pour ajouter un membre , veuillez specifier le type</h4>
+    @{
+        List<SelectListItem> listItems = new List<SelectListItem>();
+        listItems.Add(new SelectListItem
+        {
+            Text = "Membre Normal",
+            Value = "MembreNormal",
+            Selected = true
+        });
+        listItems.Add(new SelectListItem
+        {
+            Text = "Conseil Organisation",
+            Value = "ConseilOrganisation",           
+        });
+        listItems.Add(new SelectListItem
+        {
+            Text = "Exemplo3",
+            Value = "Exemplo3"
+        });
+    }
 
+   <!--- @Html.DropDownListFor(model => model.tipo, listItems, "-- Select Status --")-->
     <button class="btn btn-success">
         @Html.ActionLink("Participez", "")
     </button>

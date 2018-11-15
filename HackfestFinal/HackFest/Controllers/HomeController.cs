@@ -12,5 +12,15 @@ namespace HackFest.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ViewResult Inscriptions()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ViewResult InscriptionsCO()
+        {
+            return View();
+        }
     }
 }
