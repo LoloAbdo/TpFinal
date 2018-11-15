@@ -24,7 +24,7 @@ namespace HackfestFinal.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         [Required(ErrorMessage = "Vous devez entrez une Date")]
         public DateTime? date_Inscription { get; set; }
-
+        [Required]
         public decimal montant { get; set; }
 
     }
