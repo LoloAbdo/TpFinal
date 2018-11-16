@@ -28,21 +28,26 @@ namespace HackFest.Controllers
         [HttpPost]
         public ViewResult Index(Connexion p_connexion)
         {
-            
-         
+                  
             if (ModelState.IsValid)
             {
+                #region Connexion
+                string sNom ="";
                 Depot depot = new Depot();
-               
-                //On prend l'utilisateur dans la bd
-                //var req = from d in depot.utilisateurs
-                //          where d.User == p_connexion.User && d.Password == p_connexion.Password
-                //          select d.User.FirstOrDefault();
-               
 
-                //Depot.AjouterUitlisateur(p_connexion);
-                //return View(Depot.Utilisateurs.Where(x=> x.User == p_connexion.User && x.Password == p_connexion.Password))
-                return View("Panel" , p_connexion);
+                //Requete LINQ qui verifie dans la liste de gens interne s'ils existent.
+                var req = from d in depot.utilisateursPublic
+                          where d.User == p_connexion.User && d.Password == p_connexion.Password
+                          select d.User;
+
+                foreach (var x in req)               
+                    sNom += x;
+                
+                if (sNom == p_connexion.User.ToString())
+                   return View("Panel", p_connexion);            
+                else
+                    return View();
+                #endregion
             }
             else
             {

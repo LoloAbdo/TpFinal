@@ -8,7 +8,18 @@ namespace HackFest.Models
     public class Depot
     {
         private static List<Connexion> utilisateurs = new List<Connexion>();
-        public List<Connexion> utilisateursPublic = new List<Connexion>();
+        public List<Connexion> utilisateursPublic = new List<Connexion>() {
+            new Connexion()
+            {
+                User ="Marc",
+                Password="Incrypte"
+            },
+            new Connexion()
+            {
+                User = "Henri",
+                Password = "password"
+            }
+        };
         public static IEnumerable<Connexion> Utilisateurs
         {
             get { return utilisateurs; }
