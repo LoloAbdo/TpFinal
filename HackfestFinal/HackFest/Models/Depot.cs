@@ -8,6 +8,7 @@ namespace HackFest.Models
     public class Depot
     {
         private static List<Connexion> utilisateurs = new List<Connexion>();
+        private static List<Participant> participants = new List<Participant>();
         public List<Connexion> utilisateursPublic = new List<Connexion>() {
             new Connexion()
             {
@@ -29,6 +30,12 @@ namespace HackFest.Models
         {
             utilisateurs.Add(p_utilisateur);
         }
+
+        public static void AjouterParticipant(Participant p_participants)
+        {
+            participants.Add(p_participants);
+        }
+
         /// <summary>
         /// Contient une liste d'utilisateur qui seront la par default.
         /// On les utilisera pour se connecter

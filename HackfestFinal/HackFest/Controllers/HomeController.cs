@@ -19,6 +19,18 @@ namespace HackFest.Controllers
         {
             return View();
         }
+        
+        public ViewResult Inscriptions(Participant participant)
+        {
+            if (ModelState.IsValid)
+            {
+                Depot.AjouterParticipant(participant);
+                return View("MerciInscription", participant);
+            }
+            else
+                return View();
+        }
+
         [HttpGet]
         public ViewResult InscriptionsCO()
         {

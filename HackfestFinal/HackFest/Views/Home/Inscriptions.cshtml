@@ -14,7 +14,7 @@
 <body style="text-align:center">
     <h1 style="height:25%">Inscription au HackFest </h1>
 
-    @*<div class="panel-body" id="form" style="height:50px">
+    <div class="panel-body" id="form" style="height:50px">
         @using (Html.BeginForm())
         {
             @Html.ValidationSummary()
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label>Votre affiliation: </label>
-                @Html.TextBoxFor(x => x.Prenom, new { @class = "form-control" })
+                @Html.TextBoxFor(x => x.Affiliation, new { @class = "form-control" })
             </div>
             <div class="form-group">
                 <label>Date d'inscription: </label>
@@ -47,7 +47,7 @@
             </div>
 
         }
-    </div>*@
+    </div>
 
 </body>
 
