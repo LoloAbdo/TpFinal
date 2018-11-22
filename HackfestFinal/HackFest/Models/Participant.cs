@@ -8,6 +8,7 @@ namespace HackFest.Models
 {
     public sealed class Participant
     {
+        [Key]
         public int ID_Participant { get; set; }
 
         [Required(ErrorMessage = "SVP, inscrivez votre prénom")]
@@ -25,7 +26,5 @@ namespace HackFest.Models
         [Required(ErrorMessage = "SVP veuillez spécifier une date")]
         public DateTime Date_inscription { get; set; }
 
-        [Required(ErrorMessage = "SVP inscrivez un montant")]
-        public int Montant { get; set; }
     }
 }
