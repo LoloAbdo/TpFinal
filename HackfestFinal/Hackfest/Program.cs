@@ -18,7 +18,9 @@ namespace HackFest
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+       WebHost.CreateDefaultBuilder(args)
+           .UseStartup<Startup>()
+           // Nouvelle ligne
+           .UseDefaultServiceProvider(options => options.ValidateScopes = false);
     }
 }
