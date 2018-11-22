@@ -10,10 +10,25 @@
 </head>
 
 <body style="text-align:center">
-    <h1 style="height:25%">Inscription au HackFest</h1>
+    <h1 style="height:25%">Inscription d'un membreCo au HackFest</h1>
 
-    <div id="form">
-        <form></form>
+    <div class="panel-body" id="form" style="height:50px">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+            <div class="form-group">
+                <label>Nom utilisateur: </label>
+                @Html.TextBoxFor(x => x.Prenom, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Mot de passe Utilisateur: </label>
+                @Html.TextBoxFor(x => , new { @class = "form-control" })
+            </div>
+            <div class="text-center">
+                <input class="btn btn-success" type="submit" value="go" />
+            </div>
+
+        }
     </div>
 
 </body>
