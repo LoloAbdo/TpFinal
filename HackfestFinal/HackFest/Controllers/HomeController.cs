@@ -9,11 +9,20 @@ namespace HackFest.Controllers
 {
     public sealed class HomeController : Controller
     {
-        [HttpGet]
+        #region Interfaces
+        private IDepot idepot;
+        #endregion
+
+        #region Constructeur
+        public HomeController(IDepot p_depot) => this.idepot = p_depot;
+        
+        #endregion
+
         public ViewResult Index()
         {
             return View();
         }
+
         [HttpGet]
         public ViewResult Inscriptions()
         {

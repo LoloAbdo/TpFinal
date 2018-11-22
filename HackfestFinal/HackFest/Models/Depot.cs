@@ -31,9 +31,9 @@ namespace HackFest.Models
             utilisateurs.Add(p_utilisateur);
         }
 
-        public static void AjouterParticipant(Participant p_participants)
+        public static void AjouterParticipant(Participant p_participant)
         {
-            participants.Add(p_participants);
+            participants.Add(p_participant);
         }
 
         /// <summary>
