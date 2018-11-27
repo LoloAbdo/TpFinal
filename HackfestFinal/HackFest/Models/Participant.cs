@@ -14,13 +14,15 @@ namespace HackFest.Models
         [Required(ErrorMessage = "SVP inscrivez votre nom")]
         public string Nom { get; set; }
 
-        [Required(ErrorMessage = "SVP inscrivez votre couriel")]
+        [Required(ErrorMessage = "The email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Couriel { get; set; }
 
         [Required(ErrorMessage = "SVP spécifier une affiliaton")]
         public string Affiliation { get; set; }
 
         [Required(ErrorMessage = "SVP veuillez spécifier une date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date_inscription { get; set; }
 
     }
