@@ -22,7 +22,7 @@ namespace HackFest
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var connexion = "Data Source=MBEAUREG-15159;Initial Catalog=Anniversaire_v2;Integrated Security=True;Pooling=False";
+            var connexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Loik\\Documents\\HackfestDataBase.mdf;Integrated Security=True;Connect Timeout=30";
             services.AddDbContext<ContextBD>
                 (options => options.UseSqlServer(connexion));
 
