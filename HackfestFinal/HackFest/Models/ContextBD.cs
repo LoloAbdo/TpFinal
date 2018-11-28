@@ -11,5 +11,25 @@ namespace HackFest.Models
         public ContextBD(DbContextOptions<ContextBD> options) : base(options) { }
 
         public DbSet<Participant> Participants { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<Organisateur> Organisateurs { get; set; }
+        public DbSet<MembreArticle> MembreArticles { get; set; }
+        public DbSet<Membre> Membres { get; set; }
+        public DbSet<Specialite> Specialites { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<MembreArticle>(entity =>
+            {
+                entity.HasKey(c => new { c.ID_Article, c.ID_Membre });
+
+                // article = propriete avec l'objet (Dans MembreArticle)
+                entity.HasOne(d => d.Article)
+                      .WithMany(p => p.MembreArticles) // rendu la
+                      
+
+            });
+
+        }
     }
 }

@@ -9,10 +9,10 @@ namespace HackFest.Models
 {
     public class MembreArticle
     {
-        [Key , ForeignKey("Article")]
+        [Key ,ForeignKey("Article")]
         public int ID_Article { get; set; }
         public Article Article { get; set; }
-        [ForeignKey("Membre")]
+        [Key ,ForeignKey("Membre")]
         public int ID_Membre { get; set; }
         public Membre Membre { get; set; }
 

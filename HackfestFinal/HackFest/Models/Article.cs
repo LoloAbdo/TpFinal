@@ -19,7 +19,7 @@ namespace HackFest.Models
         [Required(ErrorMessage ="Veuillez entrer un titre d'article")]
         public string TitreArticle { get; set; }
 
-
+        public ICollection<MembreArticle> MembreArticles { get; set; }
 
 
 
