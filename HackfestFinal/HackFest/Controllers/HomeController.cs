@@ -33,7 +33,7 @@ namespace HackFest.Controllers
         {
             if (ModelState.IsValid)
             {
-                Depot.AjouterParticipant(participant);
+                idepot.AjouterParticipants(participant);
                 return View("MerciInscription", participant);
             }
             else
