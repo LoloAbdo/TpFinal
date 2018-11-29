@@ -11,6 +11,8 @@ namespace HackFest.Models
 
         void AjouterParticipants(Participant p_participant);
 
+        void AjouterOrganisateur(Organisateur p_organisateur);
+
         void SoumettreChangements();
     }
 }

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HackFest.Models.Organisateur
+
+@{
     Layout = null;
 }
 
@@ -10,24 +12,27 @@
 </head>
 
 <body style="text-align:center">
-    <h1 style="height:25%">Inscription d'un membreCo au HackFest</h1>
+    <h1 style="height:25%">Inscrire un membre du comité d'organisation. </h1>
 
     <div class="panel-body" id="form" style="height:50px">
         @using (Html.BeginForm())
         {
             @Html.ValidationSummary()
             <div class="form-group">
-                <label>Nom utilisateur: </label>
-                @*@Html.TextBoxFor(x => x.Prenom, new { @class = "form-control" })*@
+                <label>Identifiant (Numero du participant ): </label>
+                @Html.TextBoxFor(x => x.ID_Participant, new { @class = "form-control" })
             </div>
             <div class="form-group">
-                <label>Mot de passe Utilisateur: </label>
-                @*@Html.TextBoxFor(x => , new { @class = "form-control" })*@
+                <label>Mot de passe </label>
+                @Html.TextBoxFor(x => x.MotDePasse, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Rôle</label>
+                @Html.TextBoxFor(x => x.RoleOrganisteur, new { @class = "form-control" })
             </div>
             <div class="text-center">
-                <input class="btn btn-success" type="submit" value="go" />
+                <input class="btn btn-success" type="submit" value="Inscrire" />
             </div>
-
         }
     </div>
 
