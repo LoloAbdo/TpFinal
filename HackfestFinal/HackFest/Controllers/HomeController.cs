@@ -38,7 +38,7 @@ namespace HackFest.Controllers
         {
             return View("Panel");
         }
-        
+        [HttpPost]
         public ViewResult Inscriptions(Participant participant)
         {
             if (ModelState.IsValid)
@@ -49,12 +49,18 @@ namespace HackFest.Controllers
             else
                 return View();
         }
-
-        [HttpGet]
-        public ViewResult InscriptionsCO()
+        [HttpPost]
+        public ViewResult InscriptionsCO(Organisateur organisateur)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                idepot.AjouterOrganisateur(organisateur);
+                return View("MerciInscription", organisateur);
+            }
+            else
+                return View();
         }
+
         //Debut des posts
         [HttpPost]
         public ViewResult Index(Connexion p_connexion)

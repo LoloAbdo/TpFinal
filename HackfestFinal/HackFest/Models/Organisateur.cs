@@ -21,7 +21,7 @@ namespace HackFest.Models
         [Key]
         public int ID_Organisateur { get; set; }
         
-        [ForeignKey("Participant")]
+        [ForeignKey("Participant"),]
         public int ID_Participant { get; set; }
 
         public Participant Participant { get; set; }
