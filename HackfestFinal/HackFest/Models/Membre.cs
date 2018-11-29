@@ -17,5 +17,7 @@ namespace HackFest.Models
         public Participant Participant { get; set; }
 
         public ICollection<MembreArticle> MembreArticles { get; set; }
+        public ICollection<Session> Session { get; set; }
+
     }
 }

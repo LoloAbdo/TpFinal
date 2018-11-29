@@ -87,6 +87,25 @@ namespace HackFest.Migrations
                     b.ToTable("Organisateurs");
                 });
 
+            modelBuilder.Entity("HackFest.Models.Paiement", b =>
+                {
+                    b.Property<int>("ID_Paiement")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateReceptionPaiement");
+
+                    b.Property<int>("ID_Participant");
+
+                    b.Property<double>("Montant");
+
+                    b.HasKey("ID_Paiement");
+
+                    b.HasIndex("ID_Participant");
+
+                    b.ToTable("Paiements");
+                });
+
             modelBuilder.Entity("HackFest.Models.Participant", b =>
                 {
                     b.Property<int>("ID_Participant")
@@ -112,6 +131,25 @@ namespace HackFest.Migrations
                     b.ToTable("Participants");
                 });
 
+            modelBuilder.Entity("HackFest.Models.Session", b =>
+                {
+                    b.Property<int>("ID_Article");
+
+                    b.Property<int>("ID_Membre");
+
+                    b.Property<DateTime>("DateSession");
+
+                    b.Property<DateTime>("Heures");
+
+                    b.Property<string>("TitreSession");
+
+                    b.HasKey("ID_Article", "ID_Membre");
+
+                    b.HasIndex("ID_Membre");
+
+                    b.ToTable("Sessions");
+                });
+
             modelBuilder.Entity("HackFest.Models.Specialite", b =>
                 {
                     b.Property<int>("ID_Specialite")
@@ -128,6 +166,27 @@ namespace HackFest.Migrations
                     b.HasIndex("ID_Membre");
 
                     b.ToTable("Specialites");
+                });
+
+            modelBuilder.Entity("HackFest.Models.VersionArticle", b =>
+                {
+                    b.Property<int>("ID_VersionArticle")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateSoumission");
+
+                    b.Property<int>("ID_Article");
+
+                    b.Property<decimal>("NoVersion");
+
+                    b.Property<string>("URL");
+
+                    b.HasKey("ID_VersionArticle");
+
+                    b.HasIndex("ID_Article");
+
+                    b.ToTable("VersionArticles");
                 });
 
             modelBuilder.Entity("HackFest.Models.Article", b =>
@@ -167,11 +226,40 @@ namespace HackFest.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("HackFest.Models.Paiement", b =>
+                {
+                    b.HasOne("HackFest.Models.Participant", "Participant")
+                        .WithMany()
+                        .HasForeignKey("ID_Participant")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HackFest.Models.Session", b =>
+                {
+                    b.HasOne("HackFest.Models.Article", "Article")
+                        .WithMany("Session")
+                        .HasForeignKey("ID_Article")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("HackFest.Models.Membre", "Membre")
+                        .WithMany("Session")
+                        .HasForeignKey("ID_Membre")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("HackFest.Models.Specialite", b =>
                 {
                     b.HasOne("HackFest.Models.Membre", "Membre")
                         .WithMany()
                         .HasForeignKey("ID_Membre")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HackFest.Models.VersionArticle", b =>
+                {
+                    b.HasOne("HackFest.Models.Article", "Article")
+                        .WithMany()
+                        .HasForeignKey("ID_Article")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

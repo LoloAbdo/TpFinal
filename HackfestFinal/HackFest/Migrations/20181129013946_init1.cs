@@ -86,6 +86,49 @@ namespace HackFest.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Paiements",
+                columns: table => new
+                {
+                    ID_Paiement = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ID_Participant = table.Column<int>(nullable: false),
+                    Montant = table.Column<double>(nullable: false),
+                    DateReceptionPaiement = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Paiements", x => x.ID_Paiement);
+                    table.ForeignKey(
+                        name: "FK_Paiements_Participants_ID_Participant",
+                        column: x => x.ID_Participant,
+                        principalTable: "Participants",
+                        principalColumn: "ID_Participant",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VersionArticles",
+                columns: table => new
+                {
+                    ID_VersionArticle = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    URL = table.Column<string>(nullable: true),
+                    NoVersion = table.Column<decimal>(nullable: false),
+                    DateSoumission = table.Column<DateTime>(nullable: false),
+                    ID_Article = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VersionArticles", x => x.ID_VersionArticle);
+                    table.ForeignKey(
+                        name: "FK_VersionArticles_Articles_ID_Article",
+                        column: x => x.ID_Article,
+                        principalTable: "Articles",
+                        principalColumn: "ID_Article",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MembreArticles",
                 columns: table => new
                 {
@@ -104,6 +147,33 @@ namespace HackFest.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_MembreArticles_Membres_ID_Membre",
+                        column: x => x.ID_Membre,
+                        principalTable: "Membres",
+                        principalColumn: "ID_Membre",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sessions",
+                columns: table => new
+                {
+                    ID_Article = table.Column<int>(nullable: false),
+                    ID_Membre = table.Column<int>(nullable: false),
+                    TitreSession = table.Column<string>(nullable: true),
+                    DateSession = table.Column<DateTime>(nullable: false),
+                    Heures = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sessions", x => new { x.ID_Article, x.ID_Membre });
+                    table.ForeignKey(
+                        name: "FK_Sessions_Articles_ID_Article",
+                        column: x => x.ID_Article,
+                        principalTable: "Articles",
+                        principalColumn: "ID_Article",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Sessions_Membres_ID_Membre",
                         column: x => x.ID_Membre,
                         principalTable: "Membres",
                         principalColumn: "ID_Membre",
@@ -151,9 +221,24 @@ namespace HackFest.Migrations
                 column: "ID_Participant");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Paiements_ID_Participant",
+                table: "Paiements",
+                column: "ID_Participant");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sessions_ID_Membre",
+                table: "Sessions",
+                column: "ID_Membre");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Specialites_ID_Membre",
                 table: "Specialites",
                 column: "ID_Membre");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VersionArticles_ID_Article",
+                table: "VersionArticles",
+                column: "ID_Article");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -165,13 +250,22 @@ namespace HackFest.Migrations
                 name: "Organisateurs");
 
             migrationBuilder.DropTable(
+                name: "Paiements");
+
+            migrationBuilder.DropTable(
+                name: "Sessions");
+
+            migrationBuilder.DropTable(
                 name: "Specialites");
 
             migrationBuilder.DropTable(
-                name: "Articles");
+                name: "VersionArticles");
 
             migrationBuilder.DropTable(
                 name: "Membres");
+
+            migrationBuilder.DropTable(
+                name: "Articles");
 
             migrationBuilder.DropTable(
                 name: "Participants");

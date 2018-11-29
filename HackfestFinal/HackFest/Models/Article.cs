@@ -20,9 +20,7 @@ namespace HackFest.Models
         public string TitreArticle { get; set; }
 
         public ICollection<MembreArticle> MembreArticles { get; set; }
-
-
-
+        public ICollection<Session> Session { get; set; }
 
     }
 }
