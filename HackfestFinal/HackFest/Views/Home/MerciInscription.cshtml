@@ -1,7 +1,26 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
-<h2>MerciInscription</h2>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Merci</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        body {
+            text-align: center
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Merci pour l'inscription du participant</h1>
+    <br><br>
+    <p>Pour retourner au tableau de bord cliquez le bouton ci-dessous</p>
+    <div class="btn btn-success">
+        @Html.ActionLink("Tableau de bord", "Panel", "Home")
+    </div>
+</body>
+</html>

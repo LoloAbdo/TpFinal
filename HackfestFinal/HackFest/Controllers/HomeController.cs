@@ -28,6 +28,11 @@ namespace HackFest.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ViewResult Panel()
+        {
+            return View("Panel");
+        }
         
         public ViewResult Inscriptions(Participant participant)
         {
@@ -39,6 +44,7 @@ namespace HackFest.Controllers
             else
                 return View();
         }
+
 
         [HttpGet]
         public ViewResult InscriptionsCO()
