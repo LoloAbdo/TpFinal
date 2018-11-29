@@ -60,7 +60,7 @@ namespace HackFest.Migrations
 
                     b.Property<byte>("Note");
 
-                    b.HasKey("ID_Article");
+                    b.HasKey("ID_Article", "ID_Membre");
 
                     b.HasIndex("ID_Membre");
 
@@ -149,14 +149,14 @@ namespace HackFest.Migrations
             modelBuilder.Entity("HackFest.Models.MembreArticle", b =>
                 {
                     b.HasOne("HackFest.Models.Article", "Article")
-                        .WithMany()
+                        .WithMany("MembreArticles")
                         .HasForeignKey("ID_Article")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("HackFest.Models.Membre", "Membre")
-                        .WithMany()
+                        .WithMany("MembreArticles")
                         .HasForeignKey("ID_Membre")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("HackFest.Models.Organisateur", b =>

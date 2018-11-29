@@ -25,9 +25,14 @@ namespace HackFest.Models
 
                 // article = propriete avec l'objet (Dans MembreArticle)
                 entity.HasOne(d => d.Article)
-                      .WithMany(p => p.MembreArticles) // rendu la
-                      
+                      .WithMany(p => p.MembreArticles)
+                      .HasForeignKey(d => d.ID_Article)
+                      .OnDelete(DeleteBehavior.Restrict);
 
+                entity.HasOne(m => m.Membre)
+                      .WithMany(p => p.MembreArticles)
+                      .HasForeignKey(m => m.ID_Membre)
+                      .OnDelete(DeleteBehavior.Restrict);
             });
 
         }

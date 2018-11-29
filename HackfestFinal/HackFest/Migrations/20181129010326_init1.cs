@@ -95,19 +95,19 @@ namespace HackFest.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MembreArticles", x => x.ID_Article);
+                    table.PrimaryKey("PK_MembreArticles", x => new { x.ID_Article, x.ID_Membre });
                     table.ForeignKey(
                         name: "FK_MembreArticles_Articles_ID_Article",
                         column: x => x.ID_Article,
                         principalTable: "Articles",
                         principalColumn: "ID_Article",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_MembreArticles_Membres_ID_Membre",
                         column: x => x.ID_Membre,
                         principalTable: "Membres",
                         principalColumn: "ID_Membre",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

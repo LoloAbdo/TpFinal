@@ -15,5 +15,7 @@ namespace HackFest.Models
         [ForeignKey("Participant")]
         public int ID_Participant { get; set; }
         public Participant Participant { get; set; }
+
+        public ICollection<MembreArticle> MembreArticles { get; set; }
     }
 }
