@@ -26,8 +26,8 @@ namespace HackFest.Models
 
         public Participant Participant { get; set; }
 
-        [RegularExpression(@"^ (?=.*[a - z])(?=.*[A - Z])(?=.*\d).{8, 15}$)",
-                          ErrorMessage = "Il vous faut au moins 8 caracteres, une majuscule et un chiffre")]
+        //[RegularExpression(@"^ (?=.*[a - z])(?=.*[A - Z])(?=.*\d).{8, 15}$)",
+        //                  ErrorMessage = "Il vous faut au moins 8 caracteres, une majuscule et un chiffre")]
         [StringLength(20, MinimumLength = 8)]
         public string MotDePasse { get; set; }
 
