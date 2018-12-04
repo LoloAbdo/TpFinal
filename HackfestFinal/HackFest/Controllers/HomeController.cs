@@ -34,6 +34,11 @@ namespace HackFest.Controllers
             return View();
         }
         [HttpGet]
+        public ViewResult InscriptionsPaiement()
+        {
+            return View();
+        }
+        [HttpGet]
         public ViewResult Panel()
         {
             return View("Panel");

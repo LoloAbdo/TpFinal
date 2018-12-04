@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HackFest.Models
 {
-    public class Paiement
+    public sealed class Paiement
     {
         [Key]
         public int ID_Paiement { get; set; }
