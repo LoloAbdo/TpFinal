@@ -50,11 +50,6 @@ namespace HackFest.Controllers
                 return View();
         }
 
-        [HttpGet]
-        public ViewResult InscriptionsCO()
-        {
-            return View();
-        }
         //Debut des posts
         [HttpPost]
         public ViewResult Index(Connexion p_connexion)
