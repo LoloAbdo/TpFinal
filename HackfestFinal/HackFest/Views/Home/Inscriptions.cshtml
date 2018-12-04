@@ -13,49 +13,41 @@
 
 <body style="text-align:center">
     <h1 style="height:25%">Inscription au HackFest </h1>
+   
     <form class="m-1 p-1" asp-action="Inscriptions" method="post">
-        <div class="panel-body" id="form" style="height:50px">
-            @using (Html.BeginForm())
-            {
-                @Html.ValidationSummary()
+            <div class="panel-body" id="form" style="height:50px">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Prenom">Votre Prénom: </label>
                     <div><span asp-validation-for="Prenom" class="text-danger"></span></div>
                     <input asp-for="Prenom" class="form-control" />
-                    @*@Html.TextBoxFor(x => x.Prenom, new { @class = "form-control" })*@
                 </div>
                 <div class="form-group">
                     <label asp-for="Nom">Votre Nom: </label>
                     <div><span asp-validation-for="Nom" class="text-danger"></span></div>
                     <input asp-for="Nom" class="form-control" />
-                  @*  @Html.TextBoxFor(x => x.Nom, new { @class = "form-control" })*@
                 </div>
                 <div class="form-group">
                     <label>Votre Couriel: </label>
                     <div><span asp-validation-for="Couriel" class="text-danger"></span></div>
                     <input asp-for="Couriel" class="form-control" />
-                    @*@Html.TextBoxFor(x => x.Couriel, new { @class = "form-control" })*@
                 </div>
                 <div class="form-group">
                     <label asp-for="Affiliation">Votre affiliation: </label>
                     <div><span asp-validation-for="Affiliation" class="text-danger"></span></div>
                     <input asp-for="Affiliation" class="form-control" />
-                    @*@Html.TextBoxFor(x => x.Affiliation, new { @class = "form-control" })*@
                 </div>
                 <div class="form-group">
                     <label asp-for="Date_inscription">Date d'inscription: </label>
                     <div><span asp-validation-for="Date_inscription" class="text-danger"></span></div>
-                    <input asp-for="Date_inscription" class="form-control" />
-                    @*@Html.TextBoxFor(x => x.Date_inscription, new { @class = "form-control" })*@
+                    <input asp-for="Date_inscription" type="date" asp-format="{0:d}" class="form-control" />
                 </div>
                 <div class="text-center">
                     <input class="btn btn-success" type="submit" value="go" />
                 </div>
-            }
-        </div>
+            </div>
     </form>
-
+    
 </body>
 
 </html>

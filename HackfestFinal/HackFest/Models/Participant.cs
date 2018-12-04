@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace HackFest.Models
@@ -9,6 +10,7 @@ namespace HackFest.Models
         public int ID_Participant { get; set; }
 
         [Required(ErrorMessage = "SVP, inscrivez votre prénom")]
+        [Display(Name = "Votre Prenom:")]
         public string Prenom { get; set; }
 
         [Required(ErrorMessage = "SVP inscrivez votre nom")]
@@ -21,8 +23,9 @@ namespace HackFest.Models
         [Required(ErrorMessage = "SVP spécifier une affiliaton")]
         public string Affiliation { get; set; }
 
-        [Required(ErrorMessage = "SVP veuillez spécifier une date")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        [UIHint("Date")]
+        [Required(ErrorMessage = "Entrez une date svp.")]
+        [Remote("ValideDate", "Home")] //(NomDeLaMethode, Emplacement)
         public DateTime Date_inscription { get; set; }
 
     }
