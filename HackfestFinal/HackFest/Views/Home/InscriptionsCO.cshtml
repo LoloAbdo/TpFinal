@@ -13,29 +13,37 @@
 
 <body style="text-align:center">
     <h1 style="height:25%">Inscrire un membre du comité d'organisation. </h1>
+    
+    <form class="m-1 p-1" asp-action="InscriptionsCO" method="post">
+        <div class="panel-body" id="form" style="height:50px">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <div class="panel-body" id="form" style="height:50px">
-        @using (Html.BeginForm())
-        {
-            @Html.ValidationSummary()
             <div class="form-group">
-                <label>Identifiant (Numero du participant ): </label>
-                @Html.TextBoxFor(x => x.ID_Participant, new { @class = "form-control" })
+                <label asp-for="ID_Participant">Identifiant (Numero du participant ): </label>
+                <div><span asp-validation-for="ID_Participant" class="text-danger"></span></div>
+                <input asp-for="ID_Participant" type="text" class="form-control" />
             </div>
             <div class="form-group">
-                <label>Mot de passe </label>
-                @Html.TextBoxFor(x => x.MotDePasse, new { @class = "form-control" })
+                <label asp-for="MotDePasse">Mot de passe </label>
+                <div><span asp-validation-for="MotDePasse" class="text-danger"></span></div>
+                <input asp-for="MotDePasse" class="form-control" />
             </div>
             <div class="form-group">
-                <label>Rôle</label>
-                @Html.TextBoxFor(x => x.RoleOrganisteur, new { @class = "form-control" })
+                <label asp-for="RoleOrganisteur"> Role de l'organisateur </label>
+                <div><span asp-validation-for="RoleOrganisteur" class="text-danger"></span></div>
+                <select asp-for="RoleOrganisteur" class="form-control">
+                    <option value="PrésidentComitéOrganisateur">PrésidentComitéOrganisateur</option>
+                    <option value="PrésidentComitéDeProgramme">PrésidentComitéDeProgramme</option>
+                    <option value="ResponsableDesFinances">ResponsableDesFinances</option>
+                    <option value="ResponsableDesArticles">ResponsableDesArticles</option>
+                </select>
             </div>
             <div class="text-center">
                 <input class="btn btn-success" type="submit" value="Inscrire" />
             </div>
-        }
-    </div>
 
+        </div>
+    </form>
 </body>
 
 </html>
