@@ -65,6 +65,18 @@ namespace HackFest.Controllers
             else
                 return View();
         }
+        [HttpPost]
+        public ViewResult InscriptionsPaiement(Paiement paiement)
+        {
+            if (ModelState.IsValid)
+            {
+                idepot.AjouterUnPaiement(paiement);
+                //TODO: Refaire une page merci Paiement 
+                return View("MerciInscription", paiement);
+            }
+            else
+                return View();
+        }
 
         //Debut des posts
         [HttpPost]

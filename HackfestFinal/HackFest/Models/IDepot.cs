@@ -13,6 +13,8 @@ namespace HackFest.Models
 
         void AjouterOrganisateur(Organisateur p_organisateur);
 
+        void AjouterUnPaiement(Paiement p_paiement);
+
         void SoumettreChangements();
     }
 }

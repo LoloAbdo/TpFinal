@@ -9,11 +9,39 @@
 <head>
     <title>Inscrire Paiement</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
     <h1>Inscrire un paiement</h1>
     <p>Remplissez le formulaire ci-dessous pour inscrire un paiement</p>
 
+    <form class="m-1 p-1" asp-action="Inscriptions" method="post">
+        <div class="panel-body" id="form" style="height:50px">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Participant.Nom">Prénom du particpant: </label>
+                <div><span asp-validation-for="Participant.Nom" class="text-danger"></span></div>
+                <input asp-for="Participant.Nom" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Montant">Le montant: </label>
+                <div><span asp-validation-for="Montant" class="text-danger"></span></div>
+                <input asp-for="Montant" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="DateReceptionPaiement">Date du paiement: </label>
+                <div><span asp-validation-for="DateReceptionPaiement" class="text-danger"></span></div>
+                <input asp-for="DateReceptionPaiement" type="date" asp-format="{0:d}" class="form-control" />
+            </div>
+            <div class="text-center">
+                <input class="btn btn-success" type="submit" value="go" />
+            </div>
+        </div>
+    </form>
 </body>
 </html>
