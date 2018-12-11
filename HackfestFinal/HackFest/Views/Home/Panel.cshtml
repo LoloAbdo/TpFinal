@@ -1,7 +1,9 @@
 ﻿@model HackFest.Models.Connexion
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     Layout = null;
+    System.Globalization.CultureInfo _culture = @System.Globalization.CultureInfo.CurrentUICulture;
 }
 
 <!DOCTYPE HTML>
@@ -9,23 +11,41 @@
 <head>
     <title>HackFest</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        ul {
+            text-align: left;
+            list-style-type: none;
+            display: inline-block;
+        }
+
+        li {
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body style="text-align:center">
     <div class="panel panel-success">
         <div class="panel-heading text-center">
-            <h1 style="height:25%">Système d'information de gestion pour le Hackfest </h1>
+            <ul>
+                <li><a href="Panel?culture=en-US">EN-US</a></li>
+                <li><a href="Panel?culture=fr-CA">FR-CAD</a></li>
+            </ul>
+            <h1 style="height:25%">@Localizer["Titre"] </h1>
         </div>
         <div class="panel-body">
-
+            <p>@Localizer["Avertissement"]</p>
             <div class="btn btn-success">
-                @Html.ActionLink("Inscrire un participant", "Inscriptions")
-            </div> 
-            <div class="btn btn-success">
-                @Html.ActionLink("Inscrire un membre co", "InscriptionsCO")
+                <p>@Localizer["InscrireParticipant"]</p>
+                @Html.ActionLink("Go", "Inscriptions")
             </div>
             <div class="btn btn-success">
-                @Html.ActionLink("Inscrire un paiement", "InscriptionsPaiement")
+                <p>@Localizer["InscrireMembreCO"]</p>
+                @Html.ActionLink("Go", "InscriptionsCO")
+            </div>
+            <div class="btn btn-success">
+                <p>@Localizer["InscrireRF"]</p>
+                @Html.ActionLink("Go", "InscriptionsPaiement")
             </div>
         </div>
 

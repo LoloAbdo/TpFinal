@@ -5,6 +5,13 @@ using System.Threading.Tasks;
 
 namespace HackFest.Models
 {
+    /// <summary>
+    /// 
+    /// 
+    /// CECI EST UN DEPOT INUTILE , IL SERT SEULEMENT A LA FAUSSE CONNEXION
+    /// SI VOUS VOULEZ VOIR LE VRAI DEPOT , IL SE NOMME DEPOTBD
+    /// 
+    /// </summary>
     public class Depot
     {
         private static List<Connexion> utilisateurs = new List<Connexion>();
@@ -53,5 +60,7 @@ namespace HackFest.Models
                 Password = "password"
             });
         }
+
+       
     }
 }

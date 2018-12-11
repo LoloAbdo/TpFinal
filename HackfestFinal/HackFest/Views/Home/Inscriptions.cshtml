@@ -1,54 +1,71 @@
 ﻿@model HackFest.Models.Participant;
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     Layout = null;
+    System.Globalization.CultureInfo _culture = @System.Globalization.CultureInfo.CurrentUICulture;
 }
 
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Inscription</title>
+    <title>@Localizer["Titre"]</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        ul {
+            text-align: left;
+            list-style-type: none;
+            display: inline-block;
+        }
+
+        li {
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body style="text-align:center">
-    <h1 style="height:25%">Inscription au HackFest </h1>
-   
+    <ul>
+        <li><a href="Inscriptions?culture=en-US">EN-US</a></li>
+        <li><a href="Inscriptions?culture=fr-CA">FR-CAD</a></li>
+    </ul>
+    <h1 style="height:25%">@Localizer["Titre"]</h1>
+
     <form class="m-1 p-1" asp-action="Inscriptions" method="post">
-            <div class="panel-body" id="form" style="height:50px">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Prenom">Votre Prénom: </label>
-                    <div><span asp-validation-for="Prenom" class="text-danger"></span></div>
-                    <input asp-for="Prenom" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="Nom">Votre Nom: </label>
-                    <div><span asp-validation-for="Nom" class="text-danger"></span></div>
-                    <input asp-for="Nom" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Votre Couriel: </label>
-                    <div><span asp-validation-for="Couriel" class="text-danger"></span></div>
-                    <input asp-for="Couriel" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="Affiliation">Votre affiliation: </label>
-                    <div><span asp-validation-for="Affiliation" class="text-danger"></span></div>
-                    <input asp-for="Affiliation" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="Date_inscription">Date d'inscription: </label>
-                    <div><span asp-validation-for="Date_inscription" class="text-danger"></span></div>
-                    <input asp-for="Date_inscription" type="date" asp-format="{0:d}" class="form-control" />
-                    
-                </div>
-                <div class="text-center">
-                    <input class="btn btn-success" type="submit" value="go" />
-                </div>
+        <div class="panel-body" id="form" style="height:50px">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Prenom"> @Localizer["Prenom"]</label>
+                <div><span asp-validation-for="Prenom" class="text-danger"></span></div>
+                <input asp-for="Prenom" class="form-control" />
             </div>
+            <div class="form-group">
+                <label asp-for="Nom"> @Localizer["Nom"] </label>
+                <div><span asp-validation-for="Nom" class="text-danger"></span></div>
+                <input asp-for="Nom" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Couriel"> @Localizer["Courriel"] </label>
+                <div><span asp-validation-for="Couriel" class="text-danger"></span></div>
+                <input asp-for="Couriel" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Affiliation"> @Localizer["Affiliation"] </label>
+                <div><span asp-validation-for="Affiliation" class="text-danger"></span></div>
+                <input asp-for="Affiliation" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Date_inscription"> @Localizer["DateInscription"] </label>
+                <div><span asp-validation-for="Date_inscription" class="text-danger"></span></div>
+                <input asp-for="Date_inscription" type="date" asp-format="{0:d}" class="form-control" />
+
+            </div>
+            <div class="text-center">
+                <input class="btn btn-success" type="submit" value="go" />
+            </div>
+        </div>
     </form>
-    
+
 </body>
 
 </html>

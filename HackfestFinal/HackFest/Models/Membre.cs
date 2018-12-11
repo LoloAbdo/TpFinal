@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace HackFest.Models
 {
@@ -18,6 +20,11 @@ namespace HackFest.Models
 
         public ICollection<MembreArticle> MembreArticles { get; set; }
         public ICollection<Session> Session { get; set; }
+
+        void GetIDParticipant(int ID)
+        {
+            //using ( var context = HackFest.Models.ContextBD() )
+        }
 
     }
 }

@@ -1,12 +1,15 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
     Layout = null;
+    System.Globalization.CultureInfo _culture = @System.Globalization.CultureInfo.CurrentUICulture;
 }
 
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Merci</title>
+    <title>@Localizer["headTitle"]</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <style>
         body {
@@ -16,11 +19,11 @@
 </head>
 <body>
 
-    <h1>Merci pour l'inscription du participant</h1>
+    <h1>@Localizer["Titre"]</h1>
     <br><br>
-    <p>Pour retourner au tableau de bord cliquez le bouton ci-dessous</p>
+    <p>@Localizer["Information"]</p>
     <div class="btn btn-success">
-        @Html.ActionLink("Tableau de bord", "Panel", "Home")
+        @Html.ActionLink("Go", "Panel", "Home")
     </div>
 </body>
 </html>
