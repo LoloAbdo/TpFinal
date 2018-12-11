@@ -108,5 +108,60 @@ namespace HackFest.Controllers
                 return View();
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public JsonResult ValideDate(string Date)
+        {
+            DateTime dateAnalisée;
+            if (!DateTime.TryParse(Date, out dateAnalisée))
+            {
+                return Json("Entrez une date valide svp. (aaaa-mm-jj)");
+            }
+            else if (DateTime.Now > dateAnalisée)
+            {
+                return Json("Entrez une date ultérieure svp.");
+            }
+            else
+            {
+                return Json(true);
+            }
+        }
     }
 }

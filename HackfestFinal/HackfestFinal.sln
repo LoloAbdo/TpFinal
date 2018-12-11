@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackFest", "HackFest\HackFest.csproj", "{B8C3562B-855F-4721-B06C-950063DD5432}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackFest", "HackFest\HackFest.csproj", "{B8C3562B-855F-4721-B06C-950063DD5432}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackFestTest.Test", "HackFestTest.Test\HackFestTest.Test.csproj", "{CDA4F62B-6633-4E0B-9E70-8EF9FD3DB781}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B8C3562B-855F-4721-B06C-950063DD5432}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8C3562B-855F-4721-B06C-950063DD5432}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8C3562B-855F-4721-B06C-950063DD5432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA4F62B-6633-4E0B-9E70-8EF9FD3DB781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA4F62B-6633-4E0B-9E70-8EF9FD3DB781}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA4F62B-6633-4E0B-9E70-8EF9FD3DB781}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA4F62B-6633-4E0B-9E70-8EF9FD3DB781}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

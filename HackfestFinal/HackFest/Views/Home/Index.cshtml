@@ -1,7 +1,9 @@
-﻿@model HackFest.Models.Connexion
-
+﻿@model HackFest.Models.Connexion;
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     Layout = null;
+    System.Globalization.CultureInfo _culture = @System.Globalization.CultureInfo.CurrentUICulture;
 }
 
 <!DOCTYPE HTML>
@@ -9,26 +11,41 @@
 <head>
     <title>HackFest</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        ul {
+            text-align : left;
+            list-style-type :none;
+            display : inline-block;
+        }
+        li{
+            display : inline-block;
+        }
+
+    </style>
 </head>
 
 <body style="text-align:center">
     <div class="panel panel-success">
-        <div class="panel-heading text-center">
-            <h1 style="height:25%">Système d'information de gestion pour le Hackfest</h1>
+        <div class="panel-heading">
+            <ul>
+                <li><a href="Index?culture=en-US">EN-US</a></li>
+                <li><a href="Index?culture=fr-CA">FR-CAD</a></li>
+            </ul>
+            <h1 style="height:25% ; text-align : center">@Localizer["Titre"]</h1>
         </div>
         <div class="panel-body">
 
 
-            <h4 style="height:100px">Veuillez vous connecter pour continuer</h4>
+            <h4 style="height:100px">@Localizer["Connection"]</h4>
             @using (Html.BeginForm())
             {
                 @Html.ValidationSummary()
                 <div class="form-group">
-                    <label>Votre nom d'utilisateur :</label>
+                    <label>@Localizer["Username"]</label>
                     @Html.TextBoxFor(i => i.User, new { @class = "form-control" })
                 </div>
                 <div class="form-group">
-                    <label>Votre mot de passe :</label>
+                    <label>@Localizer["Password"]</label>
 
                     @Html.PasswordFor(i => i.Password, new { @class = "form-control" })
                 </div>

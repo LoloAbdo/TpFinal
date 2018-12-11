@@ -17,6 +17,10 @@ namespace HackFest.Models
         {
             _context = p_context;
         }
+        public DepotBD()
+        {
+
+        }
         #endregion
         public IQueryable<Participant> participants() => _context.Participants;
         public IQueryable<Organisateur> organisateurs() => _context.Organisateurs;
@@ -64,7 +68,12 @@ namespace HackFest.Models
                                                       p_organisateur.ID_Organisateur);
                 if (monOrganisateur != null)
                 {
-                    monOrganisateur.ID_Participant = p_organisateur.ID_Participant;
+                    monOrganisateur.Participant.Prenom = p_organisateur.Participant.Prenom;
+                    monOrganisateur.Participant.Nom = p_organisateur.Participant.Nom;
+                    monOrganisateur.Participant.Couriel = p_organisateur.Participant.Couriel;
+                    monOrganisateur.Participant.Affiliation = p_organisateur.Participant.Affiliation;
+                    monOrganisateur.Participant.Date_inscription = p_organisateur.Participant.Date_inscription;
+                    monOrganisateur.ID_Participant = p_organisateur.Participant.ID_Participant;
                     monOrganisateur.MotDePasse = p_organisateur.MotDePasse;
                     monOrganisateur.RoleOrganisteur = p_organisateur.RoleOrganisteur;
                 }

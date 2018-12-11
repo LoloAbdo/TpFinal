@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using HackFest.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +29,13 @@ namespace HackFest
             services.AddDbContext<ContextBD>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            #region Localisation      
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.AddMvc()
+              .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
+            #endregion
+
+
             services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();
@@ -36,12 +46,9 @@ namespace HackFest
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
 
-            app.UseStatusCodePages();
-            app.UseDeveloperExceptionPage();
-            app.UseStaticFiles();
-            app.UseSession();
-            app.UseMvcWithDefaultRoute();
-
+            //app.UseStatusCodePages();
+            //app.UseDeveloperExceptionPage();
+            //app.UseSession();
 
             //if (env.IsDevelopment())
             //{
@@ -52,6 +59,30 @@ namespace HackFest
             //{
             //    await context.Response.WriteAsync("Hello World!");
             //});
+
+            // on détermine les 2 cultures que nous allons utiliser
+            var supportedCultures = new[]
+            {
+                new CultureInfo("fr-CA"),
+                new CultureInfo("en-US"),
+            };
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("fr-CA"),
+                SupportedCultures = supportedCultures,//Ce qui affiche les signes de $ , l<affichage de la date..
+                SupportedUICultures = supportedCultures //Ce qui fait les traductions
+            });
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("A", "{action}", defaults: new { controller = "Home" });
+                routes.MapRoute("B", "{controller}/{action}", defaults: new { controller = "Home" });
+                routes.MapRoute("C", "", defaults: new { controller = "Home", action = "Index" }); // cas particulier de la page index qui donne un call à /
+            });
         }
     }
 }

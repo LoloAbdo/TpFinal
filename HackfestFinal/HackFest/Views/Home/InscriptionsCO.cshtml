@@ -1,7 +1,9 @@
 ﻿@model HackFest.Models.Organisateur
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     Layout = null;
+    System.Globalization.CultureInfo _culture = @System.Globalization.CultureInfo.CurrentUICulture;
 }
 
 <!DOCTYPE HTML>
@@ -9,33 +11,93 @@
 <head>
     <title>Inscription</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        ul {
+            text-align: left;
+            list-style-type: none;
+            display: inline-block;
+        }
+
+        li {
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body style="text-align:center">
-    <h1 style="height:25%">Inscrire un membre du comité d'organisation. </h1>
+    <ul>
+        <li><a href="InscriptionsCO?culture=en-US">EN-US</a></li>
+        <li><a href="InscriptionsCO?culture=fr-CA">FR-CAD</a></li>
+    </ul>
+    <h1 style="height:25%">@Localizer["Titre"]</h1>
 
-    <div class="panel-body" id="form" style="height:50px">
-        @using (Html.BeginForm())
-        {
-            @Html.ValidationSummary()
+    <form class="m-1 p-1" asp-action="InscriptionsCO" method="post">
+        <div class="panel-body" id="form" style="height:50px">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <!----FORMULAIRE DE BASE(PARTICIAPANT)-->
             <div class="form-group">
-                <label>Identifiant (Numero du participant ): </label>
-                @Html.TextBoxFor(x => x.ID_Participant, new { @class = "form-control" })
+                <label asp-for="Participant.Prenom">@Localizer["Prenom"]</label>
+                <div><span asp-validation-for="Participant.Prenom" class="text-danger"></span></div>
+                <input asp-for="Participant.Prenom" class="form-control" />
+
             </div>
             <div class="form-group">
-                <label>Mot de passe </label>
-                @Html.TextBoxFor(x => x.MotDePasse, new { @class = "form-control" })
+                <label asp-for="Participant.Nom">@Localizer["Nom"]</label>
+                <div><span asp-validation-for="Participant.Nom" class="text-danger"></span></div>
+                <input asp-for="Participant.Nom" class="form-control" />
+
             </div>
             <div class="form-group">
-                <label>Rôle</label>
-                @Html.TextBoxFor(x => x.RoleOrganisteur, new { @class = "form-control" })
+                <label asp-for="Participant.Couriel">@Localizer["Courriel"]</label>
+                <div><span asp-validation-for="Participant.Couriel" class="text-danger"></span></div>
+                <input asp-for="Participant.Couriel" class="form-control" />
+
             </div>
+            <div class="form-group">
+                <label asp-for="Participant.Affiliation">@Localizer["Affiliation"]</label>
+                <div><span asp-validation-for="Participant.Affiliation" class="text-danger"></span></div>
+                <input asp-for="Participant.Affiliation" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Participant.Date_inscription">@Localizer["DateInscription"]</label>
+                <div><span asp-validation-for="Participant.Date_inscription" class="text-danger"></span></div>
+                <input asp-for="Participant.Date_inscription" class="form-control" />
+
+            </div>
+            <!----FIN FORMULAIRE DE BASE(PARTICIAPANT)-->
+            @*<div class="form-group">
+        <label asp-for="ID_Participant">Identifiant (Numero du participant ): </label>
+        <div><span asp-validation-for="ID_Participant" class="text-danger"></span></div>
+        @*TODO: Loader les IDs des participants dans un dropdownlist...*@
+            @*<input asp-for="ID_Participant" type="text" class="form-control">*@
+
+
+            <div class="form-group">
+                <label asp-for="MotDePasse">@Localizer["Password"]</label>
+                <div><span asp-validation-for="MotDePasse" class="text-danger"></span></div>
+                <input asp-for="MotDePasse" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RoleOrganisteur"> @Localizer["RoleOrganisateur"] </label>
+                <div><span asp-validation-for="RoleOrganisteur" class="text-danger"></span></div>
+                <select asp-for="RoleOrganisteur" class="form-control">
+                    <option value="PrésidentComitéOrganisateur">@Localizer["PresidentComiteOrganisateur"]</option>
+                    <option value="PrésidentComitéDeProgramme">@Localizer["PresidentComiteDeProgramme"]</option>
+                    <option value="ResponsableDesFinances">@Localizer["ResponsableDesFinances"]</option>
+                    <option value="ResponsableDesArticles">@Localizer["ResponsableDesArticles"]</option>
+                </select>
+            </div>
+
             <div class="text-center">
-                <input class="btn btn-success" type="submit" value="Inscrire" />
+                <input class="btn btn-success" type="submit" value="Go" />
             </div>
-        }
-    </div>
 
+        </div>
+    </form>
 </body>
 
 </html>
