@@ -12,10 +12,11 @@ namespace HackFest.Controllers
         #region Interfaces
         private IDepot idepot;
         #endregion
+        ContextBD context;
 
         #region Constructeur
         public HomeController(IDepot p_depot) => this.idepot = p_depot;
-        
+
         #endregion
 
         public ViewResult Index()
@@ -68,25 +69,36 @@ namespace HackFest.Controllers
         [HttpPost]
         public ViewResult InscriptionsPaiement(Paiement paiement)
         {
-            if (ModelState.IsValid)
-            {
-                idepot.AjouterUnPaiement(paiement);
-                //TODO: Refaire une page merci Paiement 
-                return View("MerciInscription", paiement);
-            }
-            else
-                return View();
+            //Paiement nouvPaiem = context.Paiements.Where(x => x.Participant.Prenom == paiement.Participant.Prenom && 
+            //                                 x.DateReceptionPaiement == paiement.DateReceptionPaiement)
+            //                                 .FirstOrDefault();
+            //if (paiement != nouvPaiem)
+            //{
+
+
+
+                if (ModelState.IsValid)
+                {
+                    idepot.AjouterUnPaiement(paiement);
+                    //TODO: Refaire une page merci Paiement 
+                    return View("MerciInscription", paiement);
+                }
+                else
+                    return View();
+            //}
+            //else
+            //    return View();
         }
 
         //Debut des posts
         [HttpPost]
         public ViewResult Index(Connexion p_connexion)
         {
-                  
+
             if (ModelState.IsValid)
             {
                 #region Connexion
-                string sNom ="";
+                string sNom = "";
                 Depot depot = new Depot();
 
                 //Requete LINQ qui verifie dans la liste de gens interne s'ils existent.
@@ -94,11 +106,11 @@ namespace HackFest.Controllers
                           where d.User == p_connexion.User && d.Password == p_connexion.Password
                           select d.User;
 
-                foreach (var x in req)               
+                foreach (var x in req)
                     sNom += x;
-                
+
                 if (sNom == p_connexion.User.ToString())
-                   return View("Panel", p_connexion);            
+                    return View("Panel", p_connexion);
                 else
                     return View();
                 #endregion
@@ -108,44 +120,6 @@ namespace HackFest.Controllers
                 return View();
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         public JsonResult ValideDate(string Date)
         {

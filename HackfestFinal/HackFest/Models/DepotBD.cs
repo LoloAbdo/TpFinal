@@ -25,7 +25,7 @@ namespace HackFest.Models
         public IQueryable<Participant> participants() => _context.Participants;
         public IQueryable<Organisateur> organisateurs() => _context.Organisateurs;
         public IQueryable<Paiement> paiements() => _context.Paiements;
-        
+
 
         public void AjouterParticipants(Participant p_participant)
         {
@@ -95,12 +95,17 @@ namespace HackFest.Models
 
                 if (monPaiement != null)
                 {
-                    monPaiement.ID_Participant = p_paiement.ID_Participant;
+                    monPaiement.Participant.Prenom = p_paiement.Participant.Prenom;
+                    monPaiement.Participant.Nom = p_paiement.Participant.Nom;
+                    monPaiement.Participant.Couriel = p_paiement.Participant.Couriel;
+                    monPaiement.Participant.Affiliation = p_paiement.Participant.Affiliation;
+                    monPaiement.Participant.Date_inscription = p_paiement.Participant.Date_inscription;
+                    monPaiement.ID_Participant = p_paiement.Participant.ID_Participant;
                     monPaiement.Montant = p_paiement.Montant;
                     monPaiement.DateReceptionPaiement = p_paiement.DateReceptionPaiement;
                 }
-                _context.SaveChanges();
             }
+            _context.SaveChanges();
         }
     }
 }
